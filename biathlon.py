@@ -10,7 +10,7 @@ while shotnr<5:
     print (targets[0], targets[1], targets[2], targets[3], targets[4])
     shotnr = shotnr+1
     shottargetinput = int(input(f"Shot nr {shotnr} at: "))
-    if shottargetinput>5:
+    if shottargetinput>5 or shottargetinput<1:
         print("You can only shoot between 1 and 5")
         shotnr = shotnr-1
     else:
