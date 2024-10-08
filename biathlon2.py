@@ -7,7 +7,7 @@ def splash():
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     print("              Biathlon"+ "\n")
     print("        a hit or miss game" + "\n")
-    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~") #rspla+ "\n" "You got 5 shots" + "\n")
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     return None
 
 def is_open(target):
@@ -30,11 +30,35 @@ def targets_to_string(target_list):
     string = ""
     for i in target_list:
         if is_closed(i):
-            string += " *"
+            string += "* "
         elif is_open(i):
-            string += " 0"
-
+            string += "0 "
     return string
+
+def view_targets(target_list):
+    print("1 2 3 4 5")
+    print(targets_to_string(target_list))
+    return None
+
+def random_hit():
+    if randint(0,1) == 1:
+        return True
+    else:
+        return False
+    
+def shoot(target_list, index):
+    if random_hit and is_open(target_list, index-1):
+        close_target(target_list, index-1)
+        return "Hit on open target"
+    elif is_closed(target_list, index-1) :
+        return "Hit on closed target"
+    else: 
+        return "Miss"
 
 def game():
     splash
+    targets = new_targets()
+    for _ in range(1,5):
+        print(view_targets(targets))
+        shoot(targets, int(input("Sikta på")))
+
