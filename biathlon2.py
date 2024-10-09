@@ -25,6 +25,8 @@ def parse_target(position):
         index = int(position) - 1
         if  -1< index < 5:
             return index
+        else:
+            return None
     
 
 def close_target(targets_list, index):
@@ -71,7 +73,7 @@ def game():
     for _ in range(0,5):
         view_targets(targets)
         user_input = parse_target(input("Sikta på "))
-        if 0>user_input>4:
+        if user_input == None:
             print("Du måste skjuta mellan 1-5")
             user_input = parse_target(input("Sikta på "))
         shoot(targets, user_input)
