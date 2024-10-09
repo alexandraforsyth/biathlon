@@ -71,7 +71,7 @@ def game():
     for _ in range(0,5):
         view_targets(targets)
         user_input = parse_target(input("Sikta på "))
-        if 0>user_input>4
+        if 0>user_input>4:
             print("Du måste skjuta mellan 1-5")
             user_input = parse_target(input("Sikta på "))
         shoot(targets, user_input)
