@@ -20,14 +20,14 @@ def is_closed(target):
 def new_targets():
     return [open, open, open, open, open]
 
+
 def parse_target(position):
-    if len(position) == 1:
+    if type(int(position)) == int and 0<int(position)<6:
         index = int(position) - 1
-        if  -1< index < 5:
-            return index
-        else:
-            return None
-    
+        return index
+    else:
+        return None
+parse_target("3")    
 
 def close_target(targets_list, index):
     targets_list[index] = closed
@@ -57,12 +57,12 @@ def shoot(target_list, index):
     if is_open(target_list[index]) :
         if random_hit():
             close_target(target_list, index)
-            print("Hit on open target")
+            print("\nHit on open target\n")
         else: 
-            print("Miss")
+            print("\nMiss\n")
         
     elif is_closed(target_list[index]):
-        print("Hit on closed target")
+        print("\nHit on closed target\n")
     
     
     return
@@ -70,13 +70,14 @@ def shoot(target_list, index):
 def game():
     splash()
     targets = new_targets()
-    for _ in range(0,5):
+    for shotnr in range(0,5):
         view_targets(targets)
+        print(f" \nDu har {5 - shotnr} av 5 skott kvar \n")
         user_input = parse_target(input("Sikta på "))
-        if user_input == None:
+        while user_input == None:
             print("Du måste skjuta mellan 1-5")
             user_input = parse_target(input("Sikta på "))
         shoot(targets, user_input)
     view_targets(targets)
-    print(f"Snyggt, du träffade {points(targets)} targets")
+    print(f"\nSnyggt, du träffade {points(targets)} targets")
 
